@@ -1,0 +1,186 @@
+<!Doctype HTML>
+<html>
+    {% block header %}
+        <head>
+            <meta charset="UTF-8">
+            <title>My Phone Store</title>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome-free-5.15.3-web/css/all.css') }}">
+            <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+        </head>
+
+    {% endblock %}
+
+    {% block nav %}
+    <div class="nav-bar">
+        <nav class="menu">
+            <ul class="menu">
+                <li><a href="/"><i class="fas fa-home"></i>Trang chủ</a></li>
+                <li><a href="{{ url_for('mobile') }}"><i class="fas fa-mobile-alt"></i>Điện thoại</a></li>
+                <li><a href="{{ url_for('tablet') }}"><i class="fas fa-tablet-alt"></i>Máy tính bảng</a></li>
+                <li><a href="/products"><i class="fas fa-list"></i>Sản phẩm</a></li>
+            </ul>
+
+            <div class="menu-right">
+                <ul class="menu-right">
+                    <li><input type="text" class="menu-right-input" placeholder="Nhập tên sản phẩm..."></li>
+                    <li style="padding-top: 7px; padding-left: 10px"><a href="#"><i class="fas fa-search"></i></a></li>
+                </ul>
+                <div class="cart">
+                    <ul class="cart1">
+                        <li><a href="{{ url_for('cart') }}"><i class="fas fa-shopping-cart"></i></a></li>
+                        {% if session.admin %}
+                        <li><a href="{{ url_for('admin_page') }}"><i class="fas fa-user-shield"></i></a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('login_admin') }}"><i class="fas fa-user-shield"></i></a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('feedback') }}"><i class="far fa-comment-alt"></i></a></li>
+                        {% if session.user %}
+                        <li><a href="{{ url_for('user_info') }}"><i class="far fa-user"></i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="menu1">
+              <ul class="menu1">
+                  {% if session.user %}
+                  <h3>Hi, {{ session.user.name }}</h3>
+                  <li style="text-align: center; padding-top: 7px; padding-left: 0px; margin-left: 0px;">
+                      <a href="{{ url_for('logout') }}">Logout</a></li>
+                  {% else %}
+                  <li style="text-align: right;"><a href="{{ url_for('login') }}">Đăng nhập |</a></li>
+                  <li style="text-align: left; padding-left: 0px; margin-left: 0px;"><a href="register">Đăng ký</a></li>
+                  {% endif %}
+              </ul>
+                  <div class="line1"></div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <body>
+        <div class="body">
+            <header>
+                <h1>Apple Market <i class="fab fa-apple" style="color: rgb(175, 175, 175, 0.9)"></i></h1>
+            </header>
+
+    {% block body %}
+            <div>
+                    <h1 class="subject"><i class="fas fa-mobile-alt" style="padding: 8px;"></i>Điện thoại</h1>
+                    <div class="line"></div>
+                </div>
+            <section>
+                <div class="products" >
+                {% for p in products %}
+                {% if p.category_id == 1 %}
+                    <div class="product">
+                        <img width="100%" src="{{ p.images }}" alt="{{ p.name }}" vspace="45">
+                        <div class="info">
+                            <h3 style="padding:5px">{{ p.name }}</h3>
+                            <h4 style="padding-bottom:10px">{{ "{:,.2f}".format(p.price) }} VNĐ</h4>
+                                <div class="btn btn-danger">
+                                    <button>
+                                        <a href="/products" style="text-decoration:none">Chi tiết</a>
+                                    </button>
+                                </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+            </section>
+
+            <section>
+                <div>
+                    <h1 class="subject"><i class="fas fa-mobile-alt" style="padding: 8px;"></i>Máy tính bảng</h1>
+                    <div class="line"></div>
+                </div>
+
+                <div class="products">
+                    {% for p in products %}
+                    {% if p.category_id == 2 %}
+                    <div class="product">
+
+                        <img src="{{ p.images }}" alt="{{ p.name }}" vspace="40">
+                        <div class="info">
+                            <h3 style="padding:5px">{{ p.name }}</h3>
+                            <h4 style="padding-bottom:10px">{{ "{:,.2f}".format(p.price) }} VNĐ</h4>
+                                <div class="btn btn-danger">
+                                    <button>
+                                        <a href="/products" style="text-decoration:none">Chi tiết</a>
+                                    </button>
+                                </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    {% endblock %}
+    </body>
+
+
+    <footer>
+        <div class="container">
+            <div>
+                <img src="" alt="">
+            </div>
+
+            <div class="ft1">
+                <div class="ft3">
+                    <p><b>CANDLES</b></p>
+                </div>
+                <ul class="st">
+                    <li><i class="fas fa-map-marker-alt"></i>157 Washing Str.</li>
+                    <li><i class="far fa-envelope"></i>cskh.candles@gmail.com</li>
+                    <li><i class="fas fa-phone-alt"></i>999.999.999</li>
+                </ul>
+            </div>
+
+            <div class="ft3">
+                <div>
+                    <p><b>HỖ TRỢ</b></p>
+                </div>
+
+                <ul class="st">
+                    <li>Kiểm tra đơn hàng</li>
+                    <li>Đăng nhập</li>
+                    <li>Đăng kí</li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="ft3">
+                    <p><b>CHÍNH SÁCH</b></p>
+                </div>
+
+                <ul class="st">
+                    <li>Chính sách bảo mật</li>
+                    <li>Chính sách đổi trả</li>
+                    <li>Chính sách vận chuyển</li>
+                    <li>Quy định sử dụng</li>
+                </ul>
+            </div>
+
+            <div class="ft4">
+                <p><b>KẾT NỐI</b></p>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-instagram"></i>
+            </div>
+        </div>
+
+        <p style="color: red; padding-left: 10px; padding-top: 0; margin-top: 0;">*Hình ảnh chỉ mang tính chất minh họa</p>
+        <p style="color: red; padding-left: 10px;">Source: Internet</p>
+
+        <div class="l1"></div>
+        <div class="ft2">
+            <div class="l2">
+                <p style="color: rgb(184, 37, 37);"><b>CANDLES STUDIO 2021 <p>© ALL RIGHT RESERVERED</p></b></p>
+            </div>
+        </div>
+    </footer>
+</html>

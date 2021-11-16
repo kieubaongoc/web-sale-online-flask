@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Quản lý người dùng</title>
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <h1 class="text-center text-success" style="padding-top: 10px">
+            CẬP NHẬT THÔNG TIN
+        </h1>
+        <div class="container">
+            {% if err %}
+            <div class="alert alert-danger">
+                {{ err }}
+            </div>
+            {% endif %}
+            <h4>HI, "{{user.name}}"</h4>
+            <form method="post">
+
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Enter New Password..." required/>
+                </div>
+
+                <div class="form-group">
+                    <label>Ảnh</label>
+                    <input type="text" value="{{ user.images }}" name="images" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Họ và tên</label>
+                    <input type="text" value="{{ user.fullname }}" name="fullname" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Giới tính</label></br>
+                    <select name="sex">
+                        <option value="Unknown"></option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Địa chỉ</label>
+                    <input type="text" value="{{ user.address }}" name="address" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="text" value="{{ user.phone }}" name="phone" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="CẬP NHẬT" class="btn btn-danger" />
+                </div>
+            </form>
+            <div class="return text-center" style="display:">
+                <p style="font-size: 25px; "><a href="{{ url_for('user_info') }}" style="text-decoration: none">Quay lại</a></p>
+            </div>
+            </div>
+    </body>
+</html>

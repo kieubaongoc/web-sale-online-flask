@@ -1,0 +1,43 @@
+{% extends "base/base.html" %}
+{% block body %}
+        <section>
+            <div>
+                <h1 class="subject"><i class="fas fa-tablet-alt" style="padding: 8px;"></i>Máy tính bảng</h1>
+                <div class="line"></div>
+            </div>
+
+            <div class="products">
+                <div class="product">
+                    <img src="{{ url_for('static', filename='/image/ipad-pro-11-inch-2020-xam-600x600-200x200.jpg') }}" alt="phone" vspace="35">
+                    <div class="info">
+                        <h3>iPad Pro 11 inch 2020</h3>
+                        <h4>29.000.000 VNĐ</h4>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="{{ url_for('static', filename='/image/ipad-gen-8-wifi-bac-new-600x600-200x200.jpg') }}" alt="phone" vspace="35">
+                    <div class="info">
+                        <h3>iPad Gen8</h3>
+                        <h4>19.000.000 VNĐ</h4>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="{{ url_for('static', filename='/image/ipad-air-4-wifi-64gb-2020-xanhduong-600x600-200x200.jpg') }}" alt="phone" vspace="35">
+                    <div class="info">
+                        <h3>iPad Air 4</h3>
+                        <h4>9.000.000 VNĐ</h4>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="{{ url_for('static', filename='/image/ipad-air-2.jpg') }}" alt="phone" vspace="35">
+                    <div class="info">
+                        <h3>iPad Air 2</h3>
+                    </div>
+                    <h4>5.000.000 VNĐ</h4>
+                </div>
+            </div>
+        </section>
+{% endblock %}

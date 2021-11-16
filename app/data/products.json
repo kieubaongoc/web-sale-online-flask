@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Iphone 12",
+        "description": "256GB, FaceID, Triple Camera",
+        "price": 29000000.0,
+        "images": "/static/image/iphone12.png",
+        "category_id": 1
+    },
+    {
+        "id": 2,
+        "name": "Iphone 11 Pro Max",
+        "description": "512GB, FaceID, Triple Camera\r\n",
+        "price": 25000000.0,
+        "images": "/static/image/ip11promax.jpg",
+        "category_id": 1
+    },
+    {
+        "id": 3,
+        "name": "Iphone 11",
+        "description": "128GB, FaceID, Triple Camera",
+        "price": 15000000.0,
+        "images": "/static/image/ip11.jpg",
+        "category_id": 1
+    },
+    {
+        "id": 4,
+        "name": "Iphone 8 Plus",
+        "description": "128GB, TouchID",
+        "price": 9000000.0,
+        "images": "/static/image/ip8plus.jpg",
+        "category_id": 1
+    },
+    {
+        "id": 5,
+        "name": "Iphone 6S",
+        "description": "64GB, TouchID",
+        "price": 5000000.0,
+        "images": "/static/image/ip6s.jpg",
+        "category_id": 1
+    },
+    {
+        "id": 6,
+        "name": "Iphone 5 SE",
+        "description": "64GB, TouchID",
+        "price": 4000000.0,
+        "images": "/static/image/iPhone-5se.jpg",
+        "category_id": 1
+    },
+    {
+        "id": 7,
+        "name": "IPad Pro 2020",
+        "description": "11 inch, 256GB, FaceID\r\n",
+        "price": 29000000.0,
+        "images": "/static/image/ipad-pro-11-inch-2020-xam-600x600-200x200.jpg",
+        "category_id": 2
+    },
+    {
+        "id": 8,
+        "name": "IPad Gen8",
+        "description": "128GB, TouchID",
+        "price": 19000000.0,
+        "images": "/static/image/ipad-gen-8-wifi-bac-new-600x600-200x200.jpg",
+        "category_id": 2
+    },
+    {
+        "id": 9,
+        "name": "IPad Air 4",
+        "description": "64GB, TouchID\r\n",
+        "price": 9000000.0,
+        "images": "/static/image/ipad-air-4-wifi-64gb-2020-xanhduong-600x600-200x200.jpg",
+        "category_id": 2
+    },
+    {
+        "id": 10,
+        "name": "IPad Air 2",
+        "description": "64GB, Bluetooth",
+        "price": 5000000.0,
+        "images": "/static/image/ipad-air-2.jpg",
+        "category_id": 2
+    }
+]

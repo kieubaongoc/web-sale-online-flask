@@ -1,0 +1,68 @@
+{% extends "base/base.html" %}
+{% block header %}
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome-free-5.15.3-web/css/all.css') }}">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+{% endblock %}
+
+{% block nav %}
+        <div class="nav-bar">
+        <nav class="menu" style="display:flex">
+            <ul class="menu">
+                <li><a href="/"><i class="fas fa-home"></i>Trang chủ</a></li>
+                <li><a href="{{ url_for('mobile') }}"><i class="fas fa-mobile-alt"></i>Điện thoại</a></li>
+                <li><a href="{{ url_for('tablet') }}"><i class="fas fa-tablet-alt"></i>Máy tính bảng</a></li>
+                <li><a href="/products"><i class="fas fa-list"></i>Sản phẩm</a></li>
+            </ul>
+
+            <div class="menu-right" style="padding-top:15px">
+                <ul class="menu-right" style="margin-bottom:0px">
+                    <li ><input type="text" class="menu-right-input" placeholder="Nhập tên sản phẩm..."></li>
+                    <li style="padding-top: 3px; padding-left: 12px"><a href="#"><i class="fas fa-search"></i></a></li>
+                </ul>
+                <div class="cart" style="padding:0px; padding-left:30px; padding-top:3px">
+                    <ul class="cart1">
+                        <li><a href="{{ url_for('cart') }}"><i class="fas fa-shopping-cart"></i></a></li>
+                        {% if session.admin %}
+                        <li><a href="{{ url_for('admin') }}"><i class="fas fa-user-shield"></i></a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('login_admin') }}"><i class="fas fa-user-shield"></i></a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('feedback') }}"><i class="far fa-comment-alt"></i></a></li>
+                        {% if session.user %}
+                        <li><a href="{{ url_for('user_info') }}"><i class="far fa-user"></i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+{% endblock %}
+
+{% block body %}
+        <div class="body" style="display: flex">
+                <div class="container" style="padding-left:100px; padding-right:0">
+                <form method="post", action="feedback">
+                    <div class="form-group">
+                        <h3><b>Phản hồi</b></h3>
+                        <textarea class="form-control" name="feedback" cols="50" rows="5" placeholder="Nhập nội dung..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-danger" value="Cập nhật" />
+                    </div>
+                </form>
+            </div>
+
+            <div class="container">
+                <div class="" style="padding:30px; border-style: solid; width: 700px; height: 200px; border-radius:3px; border-width:1px">
+                {% if msg %}
+                    {{session.user.name}}:</br>
+                    {{ msg }}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+{% endblock %}

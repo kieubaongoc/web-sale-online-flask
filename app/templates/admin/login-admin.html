@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Admin</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center text-info">LOGIN - ADMIN</h1>
+            {% if err_msg %}
+            <div class="alert alert-danger">
+                {{ err_msg }}
+            </div>
+            {% endif %}
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" name="username" class="form-control" placeholder="Username..." />
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Password..." />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-danger" />
+                </div>
+
+            </form>
+            <div class="return text-center" style="display:">
+                <p style="font-size: 25px; "><a href="/" style="text-decoration: none">Trang chủ</a></p>
+            </div>
+    </div>
+</body>
+</html>

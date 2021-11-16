@@ -1,0 +1,100 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome-free-5.15.3-web/css/all.css') }}">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
+
+{% block nav %}
+    <div class="nav-bar">
+        <nav class="menu" style="display:flex">
+            <ul class="menu">
+                <li><a href="/"><i class="fas fa-home"></i>Trang chủ</a></li>
+                <li><a href="{{ url_for('mobile') }}"><i class="fas fa-mobile-alt"></i>Điện thoại</a></li>
+                <li><a href="{{ url_for('tablet') }}"><i class="fas fa-tablet-alt"></i>Máy tính bảng</a></li>
+                <li><a href="/products"><i class="fas fa-list"></i>Sản phẩm</a></li>
+            </ul>
+
+            <div class="menu-right" style="padding-top:15px">
+                <ul class="menu-right" style="margin-bottom:0px">
+                    <li ><input type="text" class="menu-right-input" placeholder="Nhập tên sản phẩm..."></li>
+                    <li style="padding-top: 3px; padding-left: 12px"><a href="#"><i class="fas fa-search"></i></a></li>
+                </ul>
+
+                <div class="cart" style="padding:0px; padding-left:30px; padding-top:3px">
+                    <ul class="cart1">
+                        <li><a href="{{ url_for('cart') }}"><i class="fas fa-shopping-cart"></i></a></li>
+                        {% if session.admin %}
+                        <li><a href="{{ url_for('admin') }}"><i class="fas fa-user-shield"></i></a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('login_admin') }}"><i class="fas fa-user-shield"></i></a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('feedback') }}"><i class="far fa-comment-alt"></i></a></li>
+                        {% if session.user %}
+                        <li><a href="{{ url_for('user_info') }}"><i class="far fa-user"></i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div style="padding-right:50px">
+            <h2 class="text-center text-success">THANH TOÁN GIỎ HÀNG</h2>
+            <div class="alert alert-warning">
+                <h4>Số lượng sản phẩm: <span id="total_quantity">{{ cart_pay.total_quantity }}</span></h4>
+                <h4>Tổng tiền: <span id="total_amount">{{ "{:,.2f}".format(cart_pay.total_amount) }} VNĐ</span>VNĐ</h4>
+            </div>
+        </div>
+        <table class="table">
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+                <th></th>
+            </tr>
+            {% if 'cart' in session and session['cart'] %}
+                {% for p in session['cart'].values() %}
+                <tr id="item{{ p.id }}">
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.name }}</td>
+                    <td>
+                        <div class="form-group">
+                            <input class="form-control"
+                                   onchange="updateItem(this, {{p.id}})"
+                                   type="number"
+                                   value="{{ p.quantity }}" />
+                        </div>
+                    </td>
+                    <td>{{ "{:,.2f}".format(p.price) }} VNĐ</td>
+                    <td>{{ "{:,.2f}".format(p.price * p.quantity) }} VNĐ</td>
+                    <td>
+                        <a href="javascript:;" onclick="del_item({{p.id}})">Xóa</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="5">Không có sản phẩm nào trong giỏ</td>
+            </tr>
+            {% endif %}
+            <tr align="right">
+                <td colspan="5">
+                    <input type="button" value="Thanh toán" onclick="pay()" class="btn btn-danger" />
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

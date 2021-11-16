@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Emma",
+        "username": "emma",
+        "password": "b59c67bf196a4758191e42f76670ceba",
+        "images": "/static/image/havana.jpg",
+        "fullname": "Anna Smith",
+        "sex": "Female",
+        "address": "198 Washington Str.",
+        "phone": "777.777.777"
+    },
+    {
+        "id": 2,
+        "name": "Joker",
+        "username": "joker",
+        "password": "9facbf452def2d7efc5b5c48cdb837fa",
+        "images": "/static/image/joker.PNG",
+        "address": "Gotham City.",
+        "phone": "999.999.999",
+        "fullname": "Steve Joker",
+        "sex": "Male"
+    },
+    {
+        "id": 3,
+        "name": "a",
+        "username": "a",
+        "password": "0cc175b9c0f1b6a831c399e269772661"
+    },
+    {
+        "id": 4,
+        "name": "Harley",
+        "username": "harley",
+        "password": "ef4cdd3117793b9fd593d7488409626d"
+    },
+    {
+        "id": 5,
+        "name": "EmmaD",
+        "username": "emmaD",
+        "password": "00a809937eddc44521da9521269e75c6",
+        "images": "",
+        "fullname": "",
+        "sex": "Female",
+        "address": "Hanoi",
+        "phone": "0123456789"
+    }
+]

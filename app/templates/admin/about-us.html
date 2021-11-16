@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+
+{% block nav %}
+    <div class="nav-bar">
+        <nav class="menu">
+            <ul class="menu">
+                <li><a href="/"><i class="fas fa-home"></i>Trang chủ</a></li>
+                <li><a href="{{ url_for('mobile') }}"><i class="fas fa-mobile-alt"></i>Điện thoại</a></li>
+                <li><a href="{{ url_for('tablet') }}"><i class="fas fa-tablet-alt"></i>Máy tính bảng</a></li>
+                <li><a href="/products"><i class="fas fa-list"></i>Sản phẩm</a></li>
+            </ul>
+
+            <div class="menu-right">
+                <ul class="menu-right">
+                    <li><input type="text" class="menu-right-input" placeholder="Nhập tên sản phẩm..."></li>
+                    <li style="padding-top: 7px; padding-left: 10px"><a href="#"><i class="fas fa-search"></i></a></li>
+                </ul>
+                <div class="cart">
+                    <ul class="cart1">
+                        <li><a href="{{ url_for('cart') }}"><i class="fas fa-shopping-cart"></i></a></li>
+                        {% if session.admin %}
+                        <li><a href="{{ url_for('admin_page') }}"><i class="fas fa-user-shield"></i></a></li>
+                        <li><a href="{{ url_for('user_list') }}"><i class="fas fa-users"></i></a></li>
+                        {% else %}
+                        <li><a href="{{ url_for('login_admin') }}"><i class="fas fa-user-shield"></i></a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('feedback') }}"><i class="far fa-comment-alt"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="menu1">
+                <ul class="menu1">
+                    {% if session.admin %}
+                    <h3>Hi, admin "{{ session.admin.name }}"</h3>
+                    <li style="text-align: center; padding-top: 7px; padding-left: 0px; margin-left: 0px;">
+                        <a href="{{ url_for('logout_admin') }}">Logout</a></li>
+                    {% else %}
+                    <li style="text-align: right;"><a href="{{ url_for('login_admin') }}">Đăng nhập |</a></li>
+                    <li style="text-align: left; padding-left: 0px; margin-left: 0px;"><a href="register_admin">Đăng ký</a></li>
+                    {% endif %}
+                </ul>
+                    <div class="line1"></div>
+          </div>
+      </div>
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+      <h1>CNTT &copy; 2021!</h1>
+  </div>
+{% endblock %}

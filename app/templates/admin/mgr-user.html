@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý người dùng</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <script>
+        function delete_user(userId) {
+            var c = confirm("Bạn chắc chắn muốn xóa?");
+            if (c == true) {
+                fetch("/api/users/" + userId, {
+                    method: "delete"
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(data) {
+                    console.info(data);
+                    var ursId = data.data.user_id;
+                    var u = document.getElementById("user" + usrId);
+                    p.style.display = "none";
+                }).catch(function(err) {
+                    console.error(err);
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1 style="padding-top:10px" class="text-center text-info">QUẢN LÝ NGƯỜI DÙNG</h1>
+        <form>
+            <div class="form-group">
+                <label>Tìm theo tên</label>
+                <input type="text" name="username"
+                       class="form-control" placeholder="Nhập từ khoá..."  />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" value="Tìm" />
+            </div>
+        </form>
+
+
+        <table class="table">
+            {% for u in users %}
+            <tr id="user{{ u.id }}">
+                <td>
+                    <img width="120" src="{{ u.images }}" alt="{{ u.name }}" />
+                </td>
+                <td>
+                    <h4>{{ u.name }}</h4>
+                </td>
+
+                <td>
+                    <a href="javascript:;" onclick="delete_user({{u.id}})">Xóa</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="return text-center">
+            <p style="font-size: 25px; "><a href="/" style="text-decoration: none">Trang chủ</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sản phẩm</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+<body>
+    {% block body %}
+
+    <div class="container">
+        {% if session.admin %}
+        <h1 style="padding-top:10px" class="text-center text-info">QUẢN LÝ SẢN PHẨM</h1>
+        {% else %}
+        <h1 style="padding-top:10px" class="text-center text-info">DANH MỤC THÔNG TIN SẢN PHẨM</h1></br>
+        <h1 style="padding-top:10px" class="text-center text-info">
+            <span id="cart-stats" class="badge badge-primary"></span></h1>
+            <h6><p style="padding-top:10px" class="text-center text-info">
+                <a href="{{ url_for('cart') }}"
+                   style="text-decoration:none">Xem giỏ hàng</a></p></h6>
+        {% endif %}
+        <form>
+            <div class="form-group">
+                <label>Tìm theo tên</label>
+                <input type="text" name="keyword"
+                       class="form-control" placeholder="Nhập từ khoá..."  />
+            </div>
+            <div class="form-group">
+                <lable>Tìm theo giá</lable>
+                <div class="row">
+                  <div class="col">
+                      <input type="number" name="from_price"
+                             class="form-control" placeholder="<Giá bắt đầu>" />
+                  </div>
+                  <div class="col">
+                      <input type="number" name="to_price"
+                             class="form-control" placeholder="<Giá kết thúc>" />
+                  </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-danger" value="Tìm" />
+            </div>
+        </form>
+        {% if session.admin %}
+        <h3 class="text-center" style="padding:5px; margin-bottom:20px">
+            <a href="{{ url_for('add_or_update_product') }}" style="text-decoration: none">THÊM SẢN PHẨM</a>
+        </h3>
+        {% endif %}
+        <table class="table">
+            {% for p in products %}
+            <tr id="product{{ p.id }}">
+                <td>
+                    <img width="120" src="{{ p.images }}" alt="{{ p.name }}" />
+                </td>
+                <td>
+                    <h4 style="padding-bottom:10px">{{ p.name }}</h4>
+                    <div class="container" style="padding:0">
+                        {% if session.user %}
+                        <input type="button"
+                               onclick="add_to_cart({{ p.id }}, '{{ p.name }}', {{ p.price }})"
+                               value="Đặt hàng"
+                               class="btn btn-danger" />
+                        {% else %}
+                        <a href="{{ url_for('cart') }}"
+                           style="text-decoration:none">Đăng nhập để mua hàng</a>
+                        {% endif %}
+                    </div>
+                </td>
+                <td>
+                    <p>{{ p.description }}</p>
+                </td>
+                <td>
+                    <p>{{ "{:,.2f}".format(p.price) }} VNĐ</p>
+                </td>
+                <td>{{ p.category_id }}</td>
+                <td>
+                    {% if session.admin %}
+                    <a href="{{ url_for('add_or_update_product', product_id=p.id) }}">Cập nhật</a> |
+                    <a href="javascript:;" onclick="delete_product({{p.id}})">Xóa</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="return text-center">
+            <p style="font-size: 25px; "><a href="/" style="text-decoration: none">Trang chủ</a></p>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

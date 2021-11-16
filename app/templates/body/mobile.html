@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+{% block body %}
+        <section>
+            <div>
+                <h1 class="subject"><i class="fas fa-mobile-alt" style="padding: 8px;"></i>Điện thoại</h1>
+                <div class="line"></div>
+            </div>
+            <div class="products">
+                <div class="product">
+                    <img src="{{ url_for('static', filename='/image/iphone12.png') }}" alt="phone" vspace="10">
+                    <div class="info">
+                        <h3>iPhone 12 Pro</h3>
+                        <h4>29.000.000 VNĐ</h4>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="{{ url_for('static', filename='image/ip11promax.jpg') }}" alt="phone" vspace="26">
+                    <div class="info">
+                        <h3>iPhone 11 Pro Max</h3>
+                        <h4>25.000.000 VNĐ</h4>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="{{ url_for('static', filename='image/ip11.jpg') }}" alt="phone" vspace="50">
+                    <div class="info">
+                        <h3>iPhone 11</h3>
+                        <h4>15.000.000 VNĐ</h4>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="{{ url_for('static', filename='image/ip8plus.jpg') }}" alt="phone" vspace="26">
+                    <div class="info">
+                        <h3>iPhone 8 Plus</h3>
+                        <h4>9.000.000 VNĐ</h4>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="{{ url_for('static', filename='image/ip6s.jpg') }}" alt="phone" vspace="26">
+                    <div class="info">
+                        <h3>iPhone 6S</h3>
+                        <h4>5.000.000 VNĐ</h4>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="{{ url_for('static', filename='image/iPhone-5se.jpg') }}" alt="phone" vspace="35">
+                    <div class="info">
+                        <h3>iPhone 5 SE</h3>
+                        <h4>4.000.000 VNĐ</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}
